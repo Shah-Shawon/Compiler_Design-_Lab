@@ -41,8 +41,9 @@ int isFloatOrDouble(string s)   {
     }
     return cnt;
 }
+
 int main(){
-    freopen("que5.txt","r",stdin);
+    freopen("input_of_que_5.txt","r",stdin);
     string word;
     while(getline(cin,word)){
         if(isVariable(word)){

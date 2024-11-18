@@ -21,7 +21,7 @@ bool isVariable(string word) {
 }
 int main() {
 
-    freopen("que4.txt", "r", stdin);
+    freopen("input_of_que_4.txt", "r", stdin);
     string word;
     
     while(getline(cin, word)) {

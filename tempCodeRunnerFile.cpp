@@ -1,0 +1,1 @@
+input_of_que_6.txt
