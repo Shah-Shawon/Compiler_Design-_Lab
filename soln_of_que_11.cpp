@@ -1,0 +1,118 @@
+/*
+Write a program to generate a syntax tree for the sentence a+b*c with the following 
+grammar: E —> E+E|E-E|E*E|E/E|(E)|a|b|c 
+*/
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    char data;
+    Node* left;
+    Node* right;
+
+    Node(char data){
+        this->data = data;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+Node* parse(string str);
+bool isOperand(char c);
+bool isOperator(char c);
+int precedence(char c);
+string infixToPostfix(string infix);
+
+void print(Node* root,int space = 0,int indent = 4){//inorder travarsel of tree
+    if(root == NULL)    return;
+    space +=indent;
+    print(root->right,space);
+    cout<<endl;
+    for(int i = indent;i<space;i++){
+        cout<<" ";
+    }
+    cout<<root->data;
+    print(root->left,space);
+}
+int main(){
+    freopen("input_of_que_11.txt","r",stdin);
+    string str;
+    getline(cin,str);
+    str = infixToPostfix(str);
+    Node* tree = parse(str);
+    print(tree);
+    cout<<endl;
+    return 0;
+}
+
+bool isOperator(char c) {
+    return (c=='+' or c =='-' or c=='*' or c=='/');
+}
+
+bool isOperand(char c) {
+    return isalnum(c);
+}
+
+int precedence(char c) {
+    switch (c) {
+    case '^': return 3;
+    case '*': case '/': return 2;
+    case '+': case '-': return 1;
+    default: return 0;
+    }
+}
+
+string infixToPostfix(string infix) {
+    string postfix = "";
+    stack<char>stk;
+    for(char ch : infix){
+        //add operands to postfix string
+        if(tolower(ch)>='a' && tolower(ch)<='z'){
+            postfix+=ch;
+        }
+        //push open parentheses into stack
+        else if(ch == '(')  stk.push(ch);
+        else if(ch == ')') {
+            //pop from stack and add to postfix until open parenthesis appears
+            while (stk.top() !='(')
+            {
+                postfix += stk.top();
+                stk.pop();
+            }
+            stk.pop();
+        }
+        //push or pop operator based on their precedence
+        else{
+            while (!stk.empty() && precedence(ch) <= precedence(stk.top())){
+                postfix+= stk.top();
+                stk.pop();
+            }
+            stk.push(ch);
+        }
+    }
+    while(!stk.empty()){
+        postfix += stk.top();
+        stk.pop();
+    }
+    return postfix;
+}
+
+Node* parse(string str) {
+    stack<Node*> stack;
+    for(char ch : str){
+        if(isOperand(ch)) {
+            Node* node = new Node(ch);
+            stack.push(node);
+        }
+        //If the character is an operator, create a node and pop two nodes from the stack as its children
+        else if(isOperator(ch)) {
+            Node* node = new Node(ch);
+            node->right = stack.top();
+            stack.pop();
+            node->left = stack.top();
+            stack.pop();
+            stack.push(node);
+        }
+    }
+    return stack.top();
+}
