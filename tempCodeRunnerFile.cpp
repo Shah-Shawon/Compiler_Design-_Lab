@@ -1,1 +1,1 @@
-input_of_que_9.txt
+que_lab_exmple1.txt

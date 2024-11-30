@@ -1,0 +1,9 @@
+ch_variable
+bn_var123
+01101
+0010
+abc123
+ch_ 100
+bn_
+1212
+i_abc
