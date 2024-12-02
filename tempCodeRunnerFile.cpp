@@ -1,1 +1,0 @@
-que_lab_exmple1.txt

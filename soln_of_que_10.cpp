@@ -5,7 +5,7 @@ Write a program to implement a shift reducing parsing.
 using namespace std;
 
 void shift(string stk,string ip,char c){
-    cout<<stk<<"\t\t"<<ip<<"\t\t"<<"Shift"<<c<<endl;
+    cout<<stk<<"\t\t"<<ip<<"\t\t"<<"Shift "<<c<<endl;
 }
 
 void reduceTo(string stk, string ip,char a,char b){
@@ -22,10 +22,10 @@ int main(){
 
     for(int i = 0;i<n;i++){
         string temp;
-        cout<<"Enter Production Rule "<<i+1<<": ";
+        cout<<"Enter Production Rule "<<i+1<<" : ";
         getline(cin, temp);
         gra_left[i].push_back(temp[0]);
-        for(int j = 3; j<temp.size();j++) gra_right->push_back(temp[j]);
+        for(int j = 3; j<temp.size();j++) gra_right[i].push_back(temp[j]);
     }
     cout<<"\n\nGiven Grammar is:\n";
     for(int i=0;i<n;i++){

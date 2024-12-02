@@ -1,3 +1,11 @@
+ /*
+Build a lexical analyzer implementing the following regular expressions:
+Integer variable = (i-nI-N)(a-zA-Z0-9)*
+ShortInt Number = (1-9)|(1-9)(0-9)|(1-9)(0-9)(0-9)|(1-9)(0-9)(0-9)(0-9)
+LongInt Number = (1-9)(0-9)(0-9)(0-9)(0-9)+
+Invalid Input or Undefined = Otherwise
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 

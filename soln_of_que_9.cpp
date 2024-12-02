@@ -10,6 +10,7 @@ P -> he | she | i | we | you | they
 N -> book | cow | dog | home | grass | rice | mango 
 V -> read | eat | take | run | write
 */
+
 #include<bits/stdc++.h>
 using namespace std;
 
